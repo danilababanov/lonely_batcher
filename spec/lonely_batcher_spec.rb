@@ -1,10 +1,12 @@
 require 'spec_helper'
 
-describe LonelyBatcher::Processor do
+describe LonelyBatcher do
 
-  describe "interface" do
-    it "should require 2 args" do
-      LonelyBatcher::Processor.should respond_to(:new).with(2).arguments
-    end
+  it "prints" do
+    taxonomy = File.open('spec/fixtures/taxonomy.xml')
+    destination = File.open('spec/fixtures/destinations.xml')
+    file = LonelyBatcher::Processor.new(taxonomy, destination)
+    file.output_file
   end
 end
+
