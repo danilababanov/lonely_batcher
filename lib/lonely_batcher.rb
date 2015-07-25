@@ -1,5 +1,9 @@
 require "lonely_batcher/version"
-
+require "nokogiri"
+require 'active_support'
+require 'active_support/core_ext'
+require 'rslt'
+require 'lonely_batcher/navigation_builder'
 
 module LonelyBatcher
 
@@ -17,6 +21,10 @@ module LonelyBatcher
       output = File.new("output.html", "w")
       output.write(@output_template)
       output.close
+    end
+
+    def navigation
+
     end
   end
 end
