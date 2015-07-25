@@ -13,14 +13,20 @@ module LonelyBatcher
 
     def initialize(taxonomy, destination)
       @output_template = File.open('lib/lonely_batcher/template/output.html').read
-      @taxonomy = taxonomy.read
-      @destination = destination.read
+      @taxonomy = Nokogiri::XML(taxonomy.read)
+      @destinations = Nokogiri::XML(destination.read)
     end
 
     def output_file
       output = File.new("output.html", "w")
       output.write(@output_template)
       output.close
+    end
+
+    def atlas_ids
+      destination_elements = @destinations.xpath('destinations/destination')
+      atlas_ids = destination_elements.collect { |element| element.xpath('@atlas_id').text}
+      atlas_ids
     end
 
     def navigation
