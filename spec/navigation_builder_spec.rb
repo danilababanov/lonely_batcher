@@ -18,7 +18,6 @@ describe LonelyBatcher::NavigationBuilder do
 
     it "spits out a file" do
       xml = File.open('spec/fixtures/taxonomy.xml')
-
       output = File.open( "output.html","w" )
       output << LonelyBatcher::NavigationBuilder.transform(xml)
       output.close
