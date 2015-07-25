@@ -25,7 +25,7 @@ module LonelyBatcher
 
     def atlas_ids
       destination_elements = @destinations.xpath('destinations/destination')
-      atlas_ids = destination_elements.collect { |element| element.xpath('@atlas_id').text}
+      atlas_ids = destination_elements.collect { |element| element.xpath('@atlas_id').to_s.to_i }
       atlas_ids
     end
 

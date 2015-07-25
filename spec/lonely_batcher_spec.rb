@@ -9,10 +9,10 @@ describe LonelyBatcher do
       @batcher = LonelyBatcher::Processor.new(taxonomy, destination)
     end
 
-    describe '#urls' do
-      it "should get a valid url for each destination" do
+    describe '#atlas_ids' do
+      it "collects all atlas_ids from the destinations file and returns ids in array" do
         # TODO: make this less brittle
-        expect(@batcher.atlas_ids).to include('355064')
+        expect(@batcher.atlas_ids).to all(be_an(Integer))
       end
     end
 
