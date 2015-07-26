@@ -16,11 +16,19 @@ module LonelyBatcher
       copy_support_files()
       destination_elements = @destinations.xpath('/destinations/destination')
       destination_elements.each do |destination|
+        begin
         destination_xml = Nokogiri::XML(destination.to_s)
         page = PageBuilder.new(destination_xml, navigation)
         atlas_id = page.atlas_id
         html = page.build
         write_file(html, atlas_id)
+        rescue => e
+          puts "there was an issue processing #{atlas_id}:"
+          puts e.message
+          puts e.backtrace
+          puts "moving onto the next . . ."
+          next
+        end
       end
     end
 
