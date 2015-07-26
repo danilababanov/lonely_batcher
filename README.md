@@ -25,7 +25,9 @@ The program is accessable via an irb session. Use the provided rake command to l
 To process some files run the following in the irb session:
 
 ```ruby
-  batcher = LonelyBatcher::Processor.new('desinations.xml', 'taxonomy.xml', '/path/to/output/directory')
+  taxonomy_file = File.open('path/to/taxonomy/xml')
+  destinations_file = File.open('path/to/destinations')
+  batcher = LonelyBatcher::Processor.new(taxonomy_file, destinations_file, '/path/to/output/directory')
   batcher.perform # generates files
 ```
 
@@ -41,7 +43,7 @@ The navigation builder as a subclass of RSLT::Stylesheet provided by the [The RS
 The PageBuilder inserts destination name, content and navigation into a copy of the output example html file provided.
 
 ### Processor
-Iterates through each destination in the destinations.xml file, uses NavigationBuilder and PageBuilder to contruct a page for each destination and creates a html file with the name of the file on disk being the atlas_id of the destination.
+Iterates through each destination in the destinations.xml file, uses NavigationBuilder and PageBuilder to contruct a page for each destination and creates a html file with the name of the file on disk being the atlas_id of the destination. Basic error handling has been implemented to allow the Processor to continue processing more destinations if, for some reason, it encounters something it doesn't like.
 
 ## Testing
-Testing framework is RSpec. Unit Testing of the instance methods are provided in the spec folder. Unit Tests of the Processor class also act as integration tests as they exercise all parts of the program together.
+Testing framework is RSpec. Unit Testing of the instance methods are provided in the spec folder. Unit Tests of the Processor class also act as integration tests as they exercise all parts of the program together. The provided destinations.xml and taxonomy.xml files were used as fixtures for the tests.

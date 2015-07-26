@@ -3,9 +3,9 @@ module LonelyBatcher
     attr_reader :taxonomy, :destinations, :output_directory
 
     def initialize(taxonomy, destinations, output_directory)
+      @taxonomy = Nokogiri::XML(taxonomy)
+      @destinations = Nokogiri::XML(destinations)
       @output_directory = FileUtils::mkdir_p(output_directory).first
-      @taxonomy = Nokogiri::XML(taxonomy.read)
-      @destinations = Nokogiri::XML(destinations.read)
     end
 
     def navigation
