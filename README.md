@@ -1,6 +1,6 @@
 # LonelyBatcher
 
-Thank you for taking the time to evaluate my code. This gem translates destinations xml and taxonomy xml into html files using a specific output template and collects said html files into an output directory.
+This gem translates destinations xml and taxonomy xml into html files using a specific output template and collects said html files into an output directory.
 
 ## Dependencies
 
@@ -25,10 +25,10 @@ The program is accessable via an irb session. Use the provided rake command to l
 To process some files run the following in the irb session created above:
 
 ```ruby
-  taxonomy_file = File.open('path/to/taxonomy/xml')
-  destinations_file = File.open('path/to/destinations')
-  batcher = LonelyBatcher::Processor.new(taxonomy_file, destinations_file, '/path/to/output/directory')
-  batcher.perform # generates files
+  taxonomy_file = File.open('spec/fixtures/taxonomy.xml')
+  destinations_file = File.open('spec/fixtures/destinations.xml')
+  batcher = LonelyBatcher::Processor.new(taxonomy_file, destinations_file, 'temp')
+  batcher.perform # generates files in the temp directory
 ```
 
 this will generate a folder containing the html files and supporting css.
@@ -48,8 +48,11 @@ Iterates through each destination in the destinations.xml file, uses NavigationB
 ## Testing
 Testing framework is RSpec. Unit Testing of the instance methods are provided in the spec folder. Unit Tests of the Processor class also act as integration tests as they exercise all parts of the program together. The provided destinations.xml and taxonomy.xml files were used as fixtures for the tests.
 
-To run the test suit:
+To run the test suite:
 
     $ cd lonely_batcher
     $ bundle install
     $ rspec
+
+## Thank You
+Many thanks to the person who is taking the time to review this test. All comments positive or otherwise are greatly appricated.
