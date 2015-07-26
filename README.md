@@ -22,7 +22,7 @@ The program is accessable via an irb session. Use the provided rake command to l
 
     $ rake console
 
-To process some files run the following in the irb session:
+To process some files run the following in the irb session created above:
 
 ```ruby
   taxonomy_file = File.open('path/to/taxonomy/xml')
@@ -47,3 +47,9 @@ Iterates through each destination in the destinations.xml file, uses NavigationB
 
 ## Testing
 Testing framework is RSpec. Unit Testing of the instance methods are provided in the spec folder. Unit Tests of the Processor class also act as integration tests as they exercise all parts of the program together. The provided destinations.xml and taxonomy.xml files were used as fixtures for the tests.
+
+To run the test suit:
+
+    $ cd lonely_batcher
+    $ bundle install
+    $ rspec
