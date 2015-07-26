@@ -37,7 +37,7 @@ this will generate a folder containing the html files and supporting css.
 The program is implemented as a rubygem using Bundler conventions for gem building. The program is broken into 3 separate classes. The Processor class is the main class and calls on the NaviagationBuilder and PageBuilder to construct a page for each destination. The NavigationBuilder uses the taxonomy.xml data to construct a navigation html element which is identical for each destination page. The PageBuilder constructs a page using a destination xml node from the destinations.xml file and the navigation html from the NavigationBuilder. The Processor iterates through each destination node in the destinations.xml file and creates a file for each destination in the output folder location that is provided.
 
 ### NavigationBuilder
-The navigation builder as a subclass of RSLT::Stylesheet provided by the [The RSLT library](https://github.com/DanielHeath/rslt). Each destination in the navigation is given a href which is that destination's atlas_id as specified in the taxonomy.xml file.
+The navigation builder is a subclass of RSLT::Stylesheet provided by the [The RSLT library](https://github.com/DanielHeath/rslt). Each destination in the navigation is given a href which is that destination's atlas_id as specified in the taxonomy.xml file.
 
 ### PageBuilder
 The PageBuilder inserts destination name, content and navigation into a copy of the output example html file provided.
