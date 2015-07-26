@@ -1,11 +1,10 @@
 require 'spec_helper'
 
 describe LonelyBatcher::PageBuilder do
-
   describe "#build" do
 
     before do
-      xml = <<-XML 
+      xml = <<-XML
       <destination atlas_id="123456" asset_id="22614-4" title="Here" title-ascii="Here">
         <history>
           <history></history>
@@ -21,7 +20,8 @@ describe LonelyBatcher::PageBuilder do
       XML
       destination = Nokogiri::XML(xml)
       @navigation = "<div><ul><li><a href='#'>Link</a></li></ul></div>"
-      @page = LonelyBatcher::PageBuilder.new(destination, @navigation).build
+      @page_builder = LonelyBatcher::PageBuilder.new(destination, @navigation)
+      @page = @page_builder.build
     end
 
     it "should create a html document" do
@@ -38,6 +38,12 @@ describe LonelyBatcher::PageBuilder do
 
     it "should include the navigation in the page" do
       expect(@page).to include(@navigation)
+    end
+
+    describe "#atlas_id" do
+      it "should return atlas_id" do
+        expect(@page_builder).to respond_to(:atlas_id)
+      end
     end
   end
 end
