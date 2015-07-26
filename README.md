@@ -25,7 +25,8 @@ The program is accessable via an irb session. Use the provided rake command to l
 To process some files run the following in the irb session:
 
 ```ruby
-  LonelyBatcher::Processor.new('desinations.xml', 'taxonomy.xml', '/path/to/output/directory')
+  batcher = LonelyBatcher::Processor.new('desinations.xml', 'taxonomy.xml', '/path/to/output/directory')
+  batcher.perform # generates files
 ```
 
 this will generate a folder containing the html files and supporting css.
